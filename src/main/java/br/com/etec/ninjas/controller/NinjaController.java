@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.etec.ninjas.model.Ninjas;
 import br.com.etec.ninjas.service.NinjaService;
+import jakarta.validation.Valid;
 
 @RestController//metodo para enviar as requisicoes e receber as repostas 
 @RequestMapping("/ninjas")//localhost:8080/ninjas = endereço da API
@@ -17,7 +18,7 @@ public class NinjaController {
     private NinjaService ninjaService;
 
     @PostMapping
-    public Ninjas cadastrarNinjas(@RequestBody Ninjas ninjas){
+    public Ninjas cadastrarNinjas(@Valid @RequestBody Ninjas ninjas){
         return ninjaService.cadastrarNinjas(ninjas);
     }
     
