@@ -1,6 +1,9 @@
 package br.com.etec.ninjas.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +23,11 @@ public class NinjaController {
     @PostMapping
     public Ninjas cadastrarNinjas(@Valid @RequestBody Ninjas ninjas){
         return ninjaService.cadastrarNinjas(ninjas);
+    }
+
+    @GetMapping //é utilizado para mapear requisições HTTP do tipo GET/ mais usadas para buscar ou listar dados em uma api
+    public List<Ninjas> listaNinjas(){
+        return ninjaService.listarNinjas();
     }
     
 }
