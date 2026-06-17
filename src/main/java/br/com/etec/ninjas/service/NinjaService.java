@@ -36,4 +36,28 @@ public class NinjaService {
         return ninjaRepository.findByNomeContaining(nome);
     }
     
+//Método para alterar/Atualizar ninjas 
+    public Ninjas atualizarNinjas(Long id, Ninjas ninjaAtualizado ){
+        Optional<Ninjas> ninjaCadastrado = ninjaRepository.findById(id);//optional= pode existir ou não 
+
+
+        //Ta buscando os ninjas e atualizando as informaçoes no banco 
+if (ninjaCadastrado.isPresent()) {
+    Ninjas ninjas = ninjaCadastrado.get();//get busta e set insiro 
+
+    ninjas.setNome(ninjaAtualizado.getNome());
+    ninjas.setCpf(ninjaAtualizado.getCpf());
+    ninjas.setEmail(ninjaAtualizado.getEmail());
+
+    return ninjaRepository.save(ninjas);
+}
+  return null;
+    }
+
+    //Metodo deletar/exlcuir
+//Ele nao tem retorno, pois vai excluir
+    public void deletarNinja(Long id ){
+        ninjaRepository.deleteById(id);
+    }
+
 }
