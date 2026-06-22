@@ -3,9 +3,11 @@ package br.com.etec.ninjas.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +24,7 @@ public class MissaoController {
     private MissaoService missaoService;
 
     @PostMapping
-    public missao cadastrarMissao(@Valid @RequestBody Missao missao){
+    public Missao cadastrarMissao(@Valid @RequestBody Missao missao){
         return missaoService.cadastrarMissao(missao);
     }
 
@@ -34,6 +36,19 @@ public class MissaoController {
     @GetMapping("/{dificuldade}")
     public List<Missao> buscarPorDificuldade(@PathVariable String dificuldade){
         return missaoService.buscarPorDificuldade(dificuldade);
+    }
+
+    
+    @PutMapping("/{id}")
+    public Missao atualizarMissao( @PathVariable Long id,@Valid @RequestBody Missao missao){
+        return missaoService.atualizarMissao(id, missao);
+    }
+
+
+    
+    @DeleteMapping("/{id}")
+    public void deletarMissao(@PathVariable Long id){
+        missaoService.deletarMissao(id);
     }
 
 
